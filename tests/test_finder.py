@@ -36,7 +36,14 @@ class TestFinder(TestCase):
 
     def test_must_found_more_than_one_subject(self):
         fifi_parser = FifiParser()
-        fifi_parser.feed('<html>    <body>      <div class="item">meu item 1            <div>           <a href="link-1">teste</a>          </div>      </div>      <div class="item">meu item 2            <div>               <a href="link-2">Alvo Existente</a>          </div>Alvo Existente      </div>      <div class="item">meu item 3            <div>               <a href="link-3">Alvo Existente</a>           </div>Alvo Existente      </div>  </body></html>')
+        fifi_parser.feed('<html>    <body>      <div class="item">meu item 1            <div>           <a href="link-1">teste</a>          </div>      </div>      <div class="item">meu item 2            <div>               <a href="link-2">LInk</a>          </div>Alvo Existente      </div>      <div class="item">meu item 3            <div>               <a href="link-3">Link</a>           </div>Alvo Existente      </div>  </body></html>')
         finder = HtmlFinder(fifi_parser.document)
         result = finder.find_subject('Alvo Existente')
+        self.assertEqual(2, len(result))
+
+    def test_must_found_references_to_subject(self):
+        fifi_parser = FifiParser()
+        fifi_parser.feed('<html>    <body>      <div class="item">meu item 1            <div>           <a href="link-1">teste</a>          </div>      </div>      <div class="item">meu item 2            <div>               <a href="link-2">LInk</a>          </div>Alvo Existente      </div>      <div class="item">meu item 3            <div>               <a href="link-3">Link</a>           </div>Alvo Existente      </div>  </body></html>')
+        finder = HtmlFinder(fifi_parser.document)
+        result = finder.find_references('link')
         self.assertEqual(2, len(result))

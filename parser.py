@@ -26,4 +26,5 @@ class FifiParser(HTMLParser):
         self.actual_tag.pop()
 
     def handle_data(self, data):
-        self.document[self.actual_tag[len(self.actual_tag) - 1]]['data'] = data
+        if (len(self.actual_tag) > 0): 
+            self.document[self.actual_tag[len(self.actual_tag) - 1]]['data'] = data

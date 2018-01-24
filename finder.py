@@ -11,6 +11,17 @@ class HtmlFinder():
         elements_found = []
         for idx in self.document:
             element = self.document[idx]
-            if element.get('tag') != 'a' and subject in element.get('data', "").lower():
+            data = element.get('data', "")
+            if data and element.get('tag') != 'a' and subject in data.lower():
+                elements_found.append(self.document[idx])
+        return elements_found
+
+    def find_references(self, subject):
+        subject = subject.lower()
+        elements_found = []
+        for idx in self.document:
+            element = self.document[idx]
+            data = element.get('data', "")
+            if data and element.get('tag') == 'a' and subject in data.lower():
                 elements_found.append(self.document[idx])
         return elements_found
