@@ -1,8 +1,7 @@
-import sys
 import datetime
 from pymongo import MongoClient
-from .reader import get_html_from
-from .finder import HtmlFinder
+from reader import get_html_from
+from finder import HtmlFinder
 
 
 def investigate(subject, url):
@@ -47,10 +46,3 @@ def investigate(subject, url):
         href = href if 'http:' == href[0:5] else '{0}/{1}'.format(url, href) 
         investigate(subject, href)
 
-
-if __name__=='__main__':
-    subject = sys.argv[1]
-    url= sys.argv[2]
-
-    # investigate('febre amarela', 'http://www.brasil.gov.br/home-1/ultimas-noticias')
-    investigate(subject, url)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from unittest import TestCase
-from ..parser import FifiParser
+from parser import FifiParser
 
 
 class TestFifiParser(TestCase):
