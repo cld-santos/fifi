@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from time import sleep
 from selenium import webdriver
-from .parser import FifiParser
+from parser import FifiParser
 
 
 def get_html_from(url):

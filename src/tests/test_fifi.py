@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from unittest import TestCase
-from ..fifi import investigate
+from fifi import investigate
 
 
 class TestFifi(TestCase):
