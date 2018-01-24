@@ -11,6 +11,6 @@ class HtmlFinder():
         elements_found = []
         for idx in self.document:
             element = self.document[idx]
-            if subject in element.get('data', "").lower():
+            if element.get('tag') != 'a' and subject in element.get('data', "").lower():
                 elements_found.append(self.document[idx])
         return elements_found
