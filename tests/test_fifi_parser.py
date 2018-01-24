@@ -25,3 +25,14 @@ class TestFifiParser(TestCase):
 
         self.assertEqual(a_count, 3)
 
+    def test_must_read_a_element_with_attributes(self):
+        fifi_parser = FifiParser()
+        fifi_parser.feed('<html><body><div class="item">meu <a target="_blank" href="link-1">item</a> item 1</div></body></html>')
+        self.assertEqual(4, len(fifi_parser.document))
+        for idx in fifi_parser.document:
+            element = fifi_parser.document[idx]
+            if element.get('tag', None) == 'a':
+                attributes = element.get('attributes', [])
+                self.assertEqual(len(attributes), 2)
+                self.assertEqual(attributes['href'], 'link-1')
+
